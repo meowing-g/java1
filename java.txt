@@ -1,0 +1,90 @@
+import java.util.Random;
+import java.util.Scanner;
+
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        //Найти определитель матрицы 3x3
+        double s=0;
+        double[][] mas = new double[3][3];
+        initArray(mas);
+        printArray(mas);
+
+         s=mas[0][0]*mas[1][1]*mas[2][2]+mas[0][1]*mas[1][2]*mas[2][0]+mas[1][0]*mas[2][1]*mas[0][2]-mas[0][2]*mas[1][1]*mas[2][0]-mas[0][1]*mas[1][0]*mas[2][2]-mas[0][0]*mas[1][2]*mas[2][1];
+        System.out.printf("%.2f",s);
+
+        //определители второго порядка в матрице 3 на 3
+        dvanadva(mas);
+        System.out.println();
+
+        //транспонировать матрицу
+        System.out.println("Введите размеры матрицы");
+        int x=scan.nextInt();
+        int y=scan.nextInt();
+        double[][] m1 = new double[x][y];
+        double[][] m2 = new double[y][x];
+        initArray(m1);
+        printArray(m1);
+        System.out.println();
+        trans(m1,m2);
+        printArray(m2);
+        String text = "This is a text for counting words and sentences. It contains several sentences and words that need to be counted!";
+        kolvo(text);
+    }
+
+    public static void initArray(double[][] mas){
+        Random random = new Random();
+        for(int i = 0; i < mas.length; i++){
+            for (int j = 0; j < mas[i].length; j++){
+                mas[i][j] = random.nextDouble();
+            }
+        }
+    }
+    public static void printArray(double[][] mas) {
+        for(int i = 0; i < mas.length; i++){
+            for (int j = 0; j < mas[i].length; j++){
+                System.out.printf("%.2f\t",mas[i][j]);
+            }
+            System.out.println();
+        }
+    }
+    public static void dvanadva(double [][]mas){
+        double[] l= new double[4];
+        int k=0;
+        for (int i=0;i<2;i++){
+            for (int j=0;j<2;j++){
+                l[k]=mas[i][j]*mas[i+1][j+1]-mas[i][j+1]*mas[i+1][j];
+                k++;
+            }
+        }
+        for (int i=0;i<4;i++){
+            System.out.printf("%.2f ",l[i]);
+        }
+    }
+    public static void trans(double [][]mas1,double [][]mas2){
+        for (int i=0;i<mas1.length;i++){
+            for (int j=0;j<mas1[i].length;j++){
+                mas2[j][i]=mas1[i][j];
+            }
+        }
+    }
+    public static void kolvo (String text) {
+
+        int pred = 0,slov=1;
+        // Считаем предложения
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == '.' || text.charAt(i) == '?' || text.charAt(i) == '!') {
+                pred++;
+            }
+            if (text.charAt(i) == ' '){
+                slov++;
+            }
+        }
+if (slov!=0){
+slov++;
+}
+        System.out.println("Количество слов: " + slov);
+        System.out.println("Количество предложений: " + pred);
+    }
+}
