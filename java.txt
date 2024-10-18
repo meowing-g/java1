@@ -11,8 +11,9 @@ class Main {
         initArray(mas);
         printArray(mas);
 
-         s=mas[0][0]*mas[1][1]*mas[2][2]+mas[0][1]*mas[1][2]*mas[2][0]+mas[1][0]*mas[2][1]*mas[0][2]-mas[0][2]*mas[1][1]*mas[2][0]-mas[0][1]*mas[1][0]*mas[2][2]-mas[0][0]*mas[1][2]*mas[2][1];
+        s=mas[0][0]*mas[1][1]*mas[2][2]+mas[0][1]*mas[1][2]*mas[2][0]+mas[1][0]*mas[2][1]*mas[0][2]-mas[0][2]*mas[1][1]*mas[2][0]-mas[0][1]*mas[1][0]*mas[2][2]-mas[0][0]*mas[1][2]*mas[2][1];
         System.out.printf("%.2f",s);
+        System.out.println();
 
         //определители второго порядка в матрице 3 на 3
         dvanadva(mas);
@@ -29,15 +30,15 @@ class Main {
         System.out.println();
         trans(m1,m2);
         printArray(m2);
-        String text = "This is a text for counting words and sentences. It contains several sentences and words that need to be counted!";
+        String text = "";
         kolvo(text);
     }
 
     public static void initArray(double[][] mas){
-        Random random = new Random();
+        Scanner scan=new Scanner(System.in);
         for(int i = 0; i < mas.length; i++){
             for (int j = 0; j < mas[i].length; j++){
-                mas[i][j] = random.nextDouble();
+                mas[i][j] = scan.nextDouble();
             }
         }
     }
@@ -71,7 +72,7 @@ class Main {
     }
     public static void kolvo (String text) {
 
-        int pred = 0,slov=1;
+        int pred = 0,slov=0;
         // Считаем предложения
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == '.' || text.charAt(i) == '?' || text.charAt(i) == '!') {
@@ -81,9 +82,9 @@ class Main {
                 slov++;
             }
         }
-if (slov!=0){
-slov++;
-}
+        if (slov!=0){
+            slov++;
+        }
         System.out.println("Количество слов: " + slov);
         System.out.println("Количество предложений: " + pred);
     }
